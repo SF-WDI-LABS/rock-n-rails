@@ -40,13 +40,13 @@ rails g model album title:string artist:string year:integer cover_art:string son
 * Create a database for your application to use
 
 ```bash
-rake db:create
+rails db:create
 ```
 
 * Run the migration that was generated to create a new table in the database.
 
 ```bash
-rake db:migrate
+rails db:migrate
 ```
 
 * Play with your new `Album` model in the rails console:
@@ -96,7 +96,7 @@ Album.create([
 * Run the seed file!
 
 ```bash
-rake db:seed
+rails db:seed
 ```
 
 * Check that everything was done correctly, run `rails console` or just `rails c` and inside run `Album.all`. Make sure that you can see an array of all the albums from your seed file. Exit by typing `exit`.
