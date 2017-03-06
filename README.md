@@ -386,7 +386,7 @@ post "/albums" => "albums#create"  # add me!
   end
 ```
 
-* You may wonder what all the business is with `.require(:album).permit(...)` is. This is known as [**strong parameters**](http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters) and tells our applications these are the fields we will accept. Its good security practice to help prevent users accidentally updating sensitive model attributes.
+* You may wonder what all the business is with `.require(:album).permit(...)` is. This is known as [**strong parameters**](http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters) and tells our applications these are the fields we will accept. Its good security practice to help prevent users accidentally updating sensitive model attributes.
 
 * Additionally we can refactor this code to make it look better. We can **encapsulate** our strong parameter logic into a method called `album_params`. Let's make that a private method, since only the controller itself will ever use it. At the bottom of `AlbumsController` we can write:
 
