@@ -202,7 +202,7 @@ And then let's also update the view to render a list of albums:
 <% @albums.each do |album| %>
   <p>Title: <%= album.title %></p>
   <p>Artist: <%= album.artist %></p>
-  <img src="<%= album.cover_art %>">
+  <img src="<%= album.cover_art %>"> <!-- TODO: smelly -->
 <% end %>
 ```
 
@@ -224,12 +224,11 @@ And then let's also update the view to render a list of albums:
   <img src="<%= album.cover_art %>">
   <br>
   <!-- anchor tag that links to a show page -->
-  <a href="/albums/<%= album.id %>">Show page</a><br> <!-- bad -->
-  <%= link_to "Show page", album_path(album) %>       <!-- good -->
+  <a href="/albums/<%= album.id %>">Show page</a> <!-- TODO: smelly -->
 <% end %>
 ```
 
-* Refresh the page, and click on one of the links. What error do you see?
+* Now click on one of the links. They don't work yet. What error do you see?
 
 * Let's add our second RESTful route for our `Albums` resource!
 
@@ -288,8 +287,7 @@ get "/albums/:id" => "albums#show", as: 'album' # add me!
 <body>
 
 <!--Every page will have this link to create a new album-->
-<a href="/albums/new">Make a New Album</a><br>        <!-- bad -->
-<%= link_to "Make a New Album", new_album_path %>     <!-- good -->
+<a href="/albums/new">Make a New Album</a>  <!-- TODO: the rails way -->
 
 <%= yield %>
 
@@ -386,7 +384,7 @@ post "/albums" => "albums#create"  # add me!
   end
 ```
 
-* You may wonder what all the business is with `.require(:album).permit(...)` is. This is known as [**strong parameters**](http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters) and tells our applications these are the fields we will accept. Its good security practice to help prevent users accidentally updating sensitive model attributes.
+* You may wonder what all the business is with `.require(:album).permit(...)` is. This is known as [**strong parameters**](http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters) and tells our applications these are the fields we will accept. Its good security practice to help prevent users accidentally updating sensitive model attributes.
 
 * Additionally we can refactor this code to make it look better. We can **encapsulate** our strong parameter logic into a method called `album_params`. Let's make that a private method, since only the controller itself will ever use it. At the bottom of `AlbumsController` we can write:
 
@@ -418,3 +416,51 @@ end # end of class
 (STOP and COMMIT)
 
 Congrats! We've complete all the user stories! Please see the solution branch if you have questions!
+
+## The `rails routes` command
+
+Here's a list of all of our application routes, indicating both the endpoint, the controller action, and a path prefix (i.e. the aliases we gave to our routes).
+
+``` bash
+rails routes
+#
+#    Prefix Verb   URI Pattern                Controller#Action
+#    albums GET    /albums(.:format)          albums#index
+#           POST   /albums(.:format)          albums#create
+# new_album GET    /albums/new(.:format)      albums#new
+#     album GET    /albums/:id(.:format)      albums#show
+#
+```
+
+## Using View Helpers to Clean Up
+If you're not using rails' built-in view helpers in your code, _you're working too hard_. Let's translate some of the "bad" code we wrote above into a cleaner, rails style:
+
+#### `image_tag` view helper
+Let's replace our `<img>` tag code above with the [`image_tag` view helper](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/image_tag):
+
+``` html
+<img src="<%= album.cover_art %>"> <!-- bad -->
+<%= image_tag album.cover_art %>   <!-- good -->
+```
+
+Refresh, and view the source code for your page in your browser. What does the rails helper above look like once it's converted into normal HTML?
+
+#### `link_to` view helper
+Let's replace the `<a>` tag code above with the [rails-style `link_to` view helper](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/link_to):
+
+``` html
+<a href="/albums/new">Make a New Album</a>  <!-- bad -->
+
+<%= link_to "/albums/#{album.id}" %>
+<!-- or -->
+<%= link_to album_path(album.id) %>
+<!-- or  -->
+<%= link_to album.id %>
+<!-- or -->
+<%= link_to album %>                        <!-- good -->
+```
+
+Refresh, and view the source code for your page in your browser. What does the rails helper above look like once it's converted into normal HTML?
+
+## Stretch: Add Artists
+Can you follow the steps outlined above to create `show` and `index` pages for musicians?
