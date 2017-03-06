@@ -29,11 +29,13 @@ To create a new rails application, from the command line run:
 rails new rock-n-rails-demo-app --database=postgresql --skip-test --skip-bundle
 ```
 
-Next, we're going to remove the coffee-script and sass dependencies from your `Gemfile`:
+Rails uses coffee-script (`.coffee`) for `.js` and sass (`.scss`) for `.css`.
+
+Let's keep it simple. Please remove both dependencies from your `Gemfile`:
 
 ```
-gem 'sass-rails'     # let's get rid of .scss files in favor of plain .css
-gem 'coffee-rails'   # let's get rid of .coffee files in favor of plain .js
+gem 'sass-rails'    # remove this line
+gem 'coffee-rails'  # remove this line
 ```
 
 Make sure you've saved it, and then run:
@@ -44,7 +46,7 @@ bundle install
 bundle
 ```
 
-Once it's finished dowloading all your dependent gems, you should be able to launch your local server:
+Now you should be able to launch your local server:
 
 ```bash
 rails server
