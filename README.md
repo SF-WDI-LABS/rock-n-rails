@@ -22,7 +22,43 @@ For this morning exercise we're going to be synthesizing all our Rails knowledge
 3. See a form to create a new album on `album#new`
 4. Submit the new album form to `album#create` to create a new album and then be redirected back to album index.
 
+## Initial Setup
+To create a new rails application, from the command line run:
+
+```
+rails new rock-n-rails-demo-app --database=postgresql --skip-test --skip-bundle
+```
+
+Next, we're going to remove the coffee-script and sass dependencies from your `Gemfile`:
+
+```
+gem 'sass-rails'     # let's get rid of .scss files in favor of plain .css
+gem 'coffee-rails'   # let's get rid of .coffee files in favor of plain .js
+```
+
+Make sure you've saved it, and then run:
+
+```bash
+bundle install
+# or
+bundle
+```
+
+Once it's finished dowloading all your dependent gems, you should be able to launch your local server:
+
+```bash
+rails server
+# or
+rails s
+```
+
+Now open your browser to `localhost:3000`.
+
+
+(STOP and COMMIT!) -- don't forget to `git init`
+
 ## Model
+Let's take a moment to create and seed our database.
 
 #### `Album` Model
 A `Album` should have the following attributes:
@@ -57,7 +93,9 @@ rails console
 > Album.create({title: "Test Album"})
 ```
 
-* Stop and commit!
+> Note that ActiveRecord displays the actual SQL query in your console. Make sure to read these queries -- it's a great way to practice!
+
+(STOP and COMMIT)
 
 #### `Album` seed task
 * In `db/seeds.rb` create some albums!
@@ -101,13 +139,13 @@ rails db:seed
 
 * Check that everything was done correctly, run `rails console` or just `rails c` and inside run `Album.all`. Make sure that you can see an array of all the albums from your seed file. Exit by typing `exit`.
 
-* Stop and commit!
+(STOP and COMMIT)
 
 
 ## View, Routes, and Controllers
 **See all the albums on `albums#index`**
 
-* Start the server with `rails s` & head to `localhost:3000/albums`
+* Visit `localhost:3000/albums` in your browser
     - You should see an error complaining that "no route matches...". What does that tell you?
 
 * Let's add our first RESTful route for our `Albums` resource!
@@ -147,6 +185,8 @@ Let's create `views/albums/index.html.erb` and add the following html:
 
 * Refresh the page, and you should see the above HTML rendered. Yay!
 
+(STOP and COMMIT)
+
 Now let's connect our model. Update your `index` action in `albums_controller.rb` to grab all the albums:
 
 ``` ruby
@@ -168,7 +208,9 @@ And then let's also update the view to render a list of albums:
 
 * Refresh the page and you should see your list of albums! Good work!
 
-**See a single album on `album#show`**
+(STOP and COMMIT)
+
+**See a single album on `albums#show`**
 
 * For each album in the `album#index` view let's create an anchor tag that will link to e.g. `albums/1`, `albums/2`, `albums/3`
 
@@ -235,6 +277,8 @@ get "/albums/:id" => "albums#show", as: 'album' # add me!
 <p>Song Count: <%= @album.song_count %></p>
 <%= link_to "Back", albums_path %>
 ```
+
+(STOP and COMMIT)
 
 **See a form to create a new album on `album#new`**
 
@@ -312,6 +356,8 @@ get "/albums/:id" => "albums#show", as: 'album'
 
 * Refresh and you should see the rendered form!
 
+(STOP and COMMIT)
+
 **Submit the new album form to `album#create` to create a new album and then be redirected back to album index.**
 
 * Now that our forms works, it will automatically `POST` to `/albums`. Try it and you'll see our next error!
@@ -368,5 +414,7 @@ end # end of class
     redirect_to('/albums')
   end
 ```
+
+(STOP and COMMIT)
 
 Congrats! We've complete all the user stories! Please see the solution branch if you have questions!
