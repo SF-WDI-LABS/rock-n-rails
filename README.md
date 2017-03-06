@@ -447,18 +447,18 @@ Let's replace our `<img>` tag code above with the [`image_tag` view helper](http
 Refresh, and view the source code for your page in your browser. What does the rails helper above look like once it's converted into normal HTML?
 
 #### `link_to` view helper
-Let's replace the `<a>` tag code above with the [rails-style `link_to` view helper](http://apidock.com/rails/ActionView/Helpers/AssetTagHelper/link_to):
+Let's replace the `<a>` tag code above with the [rails-style `link_to` view helper](http://apidock.com/rails/ActionView/Helpers/UrlHelper/link_to):
 
 ``` html
-<a href="/albums/new">Make a New Album</a>  <!-- bad -->
+<a href="/albums/<%= album.id %>">Show Page</a>  <!-- bad -->
 
-<%= link_to "/albums/#{album.id}" %>
+<%= link_to  "Show Page", "/albums/#{album.id}" %>
 <!-- or -->
-<%= link_to album_path(album.id) %>
+<%= link_to  "Show Page", album_path(album.id) %>
 <!-- or  -->
-<%= link_to album.id %>
+<%= link_to "Show Page", album.id %>
 <!-- or -->
-<%= link_to album %>                        <!-- good -->
+<%= link_to "Show Page", album %>                        <!-- good -->
 ```
 
 Refresh, and view the source code for your page in your browser. What does the rails helper above look like once it's converted into normal HTML?
