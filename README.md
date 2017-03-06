@@ -16,10 +16,10 @@ For this morning exercise we're going to be synthesizing all our Rails knowledge
     - with an album `title` and `artist`
     - and be able to click on an individual album and be redirected to the show page
     - and see a link to `Create New Album`
-2. See a single album on `album#show`
+2. See a single album on `albums#show`
     - with an album `title`, `artist`, `year` and `cover_art`
 3. See a form to create a new album on `album#new`
-4. Submit the new album form to `album#create` to create a new album and then be redirected back to album index.
+4. Submit the new album form to `album#create`, and see the newly created album on the index page.
 
 ## Initial Setup
 To create a new rails application, from the command line run:
