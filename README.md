@@ -1,4 +1,4 @@
-#Rock 'n Rails!
+# Rock 'n Rails!
 
 <!-- BEGIN SF-WDI-LABS BADGES -->
 <!-- INSTRUCTOR TODO: Make sure to manually bump version number of commits-since ("updates") badge to latest release version -->
@@ -8,7 +8,7 @@
 
 For this morning exercise we're going to be synthesizing all our Rails knowledge to build a album collection! At the bottom of this file you can find a link to a completed solution.
 
-###User stories
+### User stories
 
 *User should be able to...*
 
