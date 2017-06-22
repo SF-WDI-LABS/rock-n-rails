@@ -6,7 +6,7 @@
 [![Issues Count](https://img.shields.io/github/issues-raw/SF-WDI-LABS/rock-n-rails.svg)](https://github.com/SF-WDI-LABS/rock-n-rails/issues)
 <!-- END SF-WDI-LABS BADGES -->
 
-For this morning exercise we're going to be synthesizing all our Rails knowledge to build a album collection! At the bottom of this file you can find a link to a completed solution.
+For this exercise we're going to be synthesizing all our Rails knowledge to build a album collection! At the bottom of this file you can find a link to a completed solution.
 
 ### User stories
 
