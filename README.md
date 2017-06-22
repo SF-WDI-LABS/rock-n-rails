@@ -45,6 +45,12 @@ bundle install
 bundle
 ```
 
+Let's also create our app's database:
+
+```bash
+rails db:create
+```
+
 Now you should be able to launch your local server:
 
 ```bash
@@ -72,12 +78,6 @@ A `Album` should have the following attributes:
 
 ```bash
 rails g model album title:string artist:string year:integer cover_art:string song_count:integer
-```
-
-* Create a database for your application to use
-
-```bash
-rails db:create
 ```
 
 * Run the migration that was generated to create a new table in the database.
